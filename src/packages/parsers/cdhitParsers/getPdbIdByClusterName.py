@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Parsers for cdhit file output
+Cdhit file output parser for obtein pdbId list by cluster name.
 {License_info}
 """
 
@@ -20,7 +20,7 @@ import re
 # Own modules
 # […]
 
-__authors__ = 'Guillermo Benitez, Matías Carletti'
+__authors__ = ['Guillermo Benitez', 'Matías Carletti']
 __copyright__ = 'Copyright 2021, bioinfoToolkit'
 __credits__ = ['{credit_list}']
 __license__ = '{license}'
