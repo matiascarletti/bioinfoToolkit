@@ -223,10 +223,12 @@ def blastp_getHomologuesFrom(blastDbPath=str,
     Turn on best hit per subject sequence
 
     """
+    # make out folder for saving the output
     try:
         os.makedirs(outFolderPath)
     except FileExistsError:
         print("Out folder alredy exist")
+    # seting the shell command line
     subprocess.call([
                     "-db", blastDbPath,
                     "-query", query,

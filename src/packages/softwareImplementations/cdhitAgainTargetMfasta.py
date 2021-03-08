@@ -1,5 +1,34 @@
-import os
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+"""
+cdhit runner for get sequence clustets
+{License_info}
+"""
+
+# Futures
+from __future__ import print_function
+# […]
+
+# Built-in/Generic Imports
 import subprocess
+import os
+# […]
+
+# Libs
+# […]
+
+# Own modules
+# […]
+
+__author__ = 'Matías Carletti'
+__copyright__ = 'Copyright 2021, bioinfoToolkit'
+__credits__ = ['{credit_list}']
+__license__ = '{license}'
+__version__ = '{mayor}.{minor}.{rel}'
+__maintainer__ = '{maintainer}'
+__email__ = 'matias.carletti@gmail.com'
+__status__ = '{dev_status}'
 
 def cdhit_getSequenceClustersFrom(mfastaFilePath,
                                 outFolderPath,
@@ -59,6 +88,12 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
     -A	minimal alignment coverage control for the both sequences, default 0
         alignment must cover >= this value for both sequences 
     """
+    # make out folder for saving the output
+    try:
+        os.makedirs(outFolderPath)
+    except FileExistsError:
+        print("Out folder alredy exist")
+    # seting the shell command line        
     subprocess.call(["cdhit",
                     "-i", mfastaFilePath,
                     "-o", "%s/%s" % (outFolderPath, outFileName),
