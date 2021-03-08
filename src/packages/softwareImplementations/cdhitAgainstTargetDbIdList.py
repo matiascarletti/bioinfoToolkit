@@ -37,9 +37,9 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
                                 lenghtDiffCutoff=0.95,
                                 lenghtDiffAaCutoff=10,
                                 covLongAlnCutoff=float,
-                                covLongAaAlnCutoff=int,
+                                covLongAlnAaCutoff=int,
                                 covShortAlnCutoff=float,
-                                covShortAaAlnCutoff=int,
+                                covShortAlnAaCutoff=int,
                                 covAlnCutoff=float
                                 ):
     """
@@ -103,7 +103,7 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
                     "-aL", str(covLongAlnCutoff),
                     "-AL", str(covLongAlnAaCutoff),
                     "-aS", str(covShortAlnCutoff),
-                    "-AS", str(covShortAaAlnCutoff),
+                    "-AS", str(covShortAlnAaCutoff),
                     "-A", str(covAlnCutoff),
                     ],
                     shell=True)
