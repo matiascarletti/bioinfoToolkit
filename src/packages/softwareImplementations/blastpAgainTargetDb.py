@@ -31,15 +31,40 @@ __email__ = 'matias.carletti@gmail.com'
 __status__ = '{dev_status}'
 
 
-def blaspAgain(blastDbPath=str, 
-                query=str,
-                evalue=1E-10,
-                outFolderPath=str,
-                outFileName=str,
-                outFileFormat=6, numAlignements=1000,
-                queryCoverage=70, sortHitsByParam=3,    
-                sortHspsByParam=3)
-"""
+def blastp_getHomologuesFrom(blastDbPath=str, 
+                            queryFasta=str,
+                            outFolderPath=str,
+                            outFileName=str,
+                            outFileFormat=6, 
+                            evalueCutoff=1E-10, 
+                            numAlignementsCutoff=1000,
+                            queryCoverageCutoff=70, 
+                            sortHitsByParam=3,    
+                            sortHspsByParam=3)
+    """
+    Purpose: Run blastp shell command line again a blast Database \
+            with evalue and num alignemnts and query coverage cutoffs
+            - note: for objetives of get homologues sequences run with \
+                    this defaults setting format:
+                                sevalueCutoff=1E-10, 
+                                numAlignementsCutoff=1000,
+                                queryCoverageCutoff=70
+
+            shellCmd: blastp -query $1 -db $2 -evalue $3 -out "$1"_out -outfmt '6 qaccver qlen qstart qend sseqid saccver slen sstart send length nident gaps evalue pident qcovs' -num_alignments $4
+            sourceCmd: https://gitlab.com/sbgunq/bioinfo-scripts/-/blob/master/BLAST_runner/run_blast.sh
+
+    Parameters:
+    - blastDbPath           a srt for set the blast database path 
+    - queryFastaPath        a str for set the query fasta path
+    - outFolderPath=str     a str for set out folder path 
+    - outBlastName=str      a str for set out file name
+    - outFileFormat         a int for set out file format. 6 = Tabular.
+    - evalueCutoff          a int for set the evalue cutoff (scientific format). 
+    - numAlignementsCutoff  a int for set the number of alignements cutoff. 1000 for get homologues
+    - queryCoverageCutoff   a int for set the query coveraget cutoff. 1E-10 for get homologues
+    - sortHitsByParam       a int for set the sorting of hits. 4 = Sort by query coverage
+    - sortHspsByParam       a int for set the sorting of hsps. 3 = Sort by hsp percent identity
+
     *** Input query options
     -query <File_In>
     Input file name
@@ -205,13 +230,13 @@ def blaspAgain(blastDbPath=str,
     subprocess.call([
                     "-db", blastDbPath,
                     "-query", query,
-                    "-evalue", evalue,
+                    "-evalue", str(evalue),
                     "-out", "%s/%s" (outFolderPath, outFileName),
                     "-outfmt", outFileFormat + " qaccver qlen qstart qend sseqid saccver slen sstart send length nident gaps evalue pident qcovs",
-                    "-num_alignments", numAlignements,
-                    "-qcov_hsp_per", queryCoverage,
-                    "-sorthits", sortHitsByParam,
-                    "-sorthsps", sortHspsByParam
+                    "-num_alignments", str(numAlignements),
+                    "-qcov_hsp_per", str(queryCoverage),
+                    "-sorthits", str(sortHitsByParam),
+                    "-sorthsps", str(sortHspsByParam)
                     ], 
                     shell=True
                     )

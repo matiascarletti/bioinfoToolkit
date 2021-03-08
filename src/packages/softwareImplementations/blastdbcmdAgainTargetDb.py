@@ -1,6 +1,6 @@
 import os
 
-def blastdbcmdAgain(blastDbPath, dbIdListFile, outFolderPath, outFileName):
+def blastdbcmd_getMfastaFrom(blastDbPath, dbIdListFile, outFolderPath, outMfastaName):
     """
     Purpose: Run blastdbcmd shell command line again a target blast database
             shellCmd: blastdbcmd -db $2 -entry $(cat "$1"_ids) > "$1"_seqs.fa
@@ -20,7 +20,7 @@ def blastdbcmdAgain(blastDbPath, dbIdListFile, outFolderPath, outFileName):
     shellCmd = "blastdbcmd -db %s -entry $(cat %s) > %s/%s.fasta" % (blastDbPath, 
                                                                     dbIdListFile, 
                                                                     outFolderPath, 
-                                                                    outFileName)
+                                                                    outMfastaName)
     
     os.system(shellCmd)
     return
