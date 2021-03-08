@@ -32,7 +32,7 @@ __status__ = '{dev_status}'
 
 def cdhit_getSequenceClustersFrom(mfastaFilePath,
                                 outFolderPath,
-                                outFileName,
+                                outClusterName,
                                 seqIdenCutoff=0.90,
                                 lenghtDiffCutoff=0.95,
                                 lenghtDiffAaCutoff=10,
@@ -96,7 +96,7 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
     # seting the shell command line        
     subprocess.call(["cdhit",
                     "-i", mfastaFilePath,
-                    "-o", "%s/%s" % (outFolderPath, outFileName),
+                    "-o", "%s/%s" % (outFolderPath, outClusterName),
                     "-c", str(seqIdenCutoff),
                     "-s", str(lenghtDiffCutoff),
                     "-S", str(lenghtDiffAaCutoff),
