@@ -36,11 +36,11 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
                                 seqIdenCutoff=0.90,
                                 lenghtDiffCutoff=0.95,
                                 lenghtDiffAaCutoff=10,
-                                covLongAlnCutoff=int,
+                                covLongAlnCutoff=float,
                                 covLongAaAlnCutoff=int,
-                                covShortAlnCutoff=int,
+                                covShortAlnCutoff=float,
                                 covShortAaAlnCutoff=int,
-                                covAlnCutoff=int
+                                covAlnCutoff=float
                                 ):
     """
     Purpose: Run cdhit shell command line again a multifasta pdb Database \
@@ -97,14 +97,14 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
     subprocess.call(["cdhit",
                     "-i", mfastaFilePath,
                     "-o", "%s/%s" % (outFolderPath, outFileName),
-                    "-c", seqIdenCutoff,
-                    "-s", lenghtDiffCutoff,
-                    "-S", lenghtDiffAaCutoff,
-                    "-aL", covLongAlnCutoff,
-                    "-AL", covLongAlnAaCutoff,
-                    "-aS", covShortAlnCutoff,
-                    "-AS", covShortAaAlnCutoff,
-                    "-A", covAlnCutoff,
+                    "-c", str(seqIdenCutoff),
+                    "-s", str(lenghtDiffCutoff),
+                    "-S", str(lenghtDiffAaCutoff),
+                    "-aL", str(covLongAlnCutoff),
+                    "-AL", str(covLongAlnAaCutoff),
+                    "-aS", str(covShortAlnCutoff),
+                    "-AS", str(covShortAaAlnCutoff),
+                    "-A", str(covAlnCutoff),
                     ],
                     shell=True)
     return
