@@ -12,6 +12,7 @@ from __future__ import print_function
 
 # Built-in/Generic Imports
 import subprocess
+import os
 # […]
 
 # Libs
@@ -197,6 +198,10 @@ def blaspAgain(blastDbPath=str,
     Turn on best hit per subject sequence
 
     """
+    try:
+        os.makedirs(outFolderPath)
+    except FileExistsError:
+        print("Out folder alredy exist")
     subprocess.call([
                     "-db", blastDbPath,
                     "-query", query,
@@ -207,5 +212,7 @@ def blaspAgain(blastDbPath=str,
                     "-qcov_hsp_per", queryCoverage,
                     "-sorthits", sortHitsByParam,
                     "-sorthsps", sortHspsByParam
-                    ])
+                    ], 
+                    shell=True
+                    )
     return
