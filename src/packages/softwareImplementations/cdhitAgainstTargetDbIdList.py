@@ -95,7 +95,7 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
     # seting the shell command line        
     subprocess.call(["cd-hit",
                     "-i", mfastaFilePath,
-                    "-o", "%s/%s" % (outFolderPath, outClusterName),
+                    "-o", "%s/%s.fasta" % (outFolderPath, outClusterName),
                     "-c", str(seqIdenCutoff),
                     "-s", str(lenghtDiffCutoff),
                     "-S", str(lenghtDiffAaCutoff),
