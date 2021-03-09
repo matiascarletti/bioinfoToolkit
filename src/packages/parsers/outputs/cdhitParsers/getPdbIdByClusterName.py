@@ -63,19 +63,31 @@ def getPdbIdByClusterNameDictFrom(cdhitOutFile):
 	# ademas agrego una lista vacía dentro de la lista valores
 	# Si no es el nombre del cluster me fijo si tiene la palabra .ent y con regular expression me quedo con las partes que me interesan y se lo agrego a la lista vacía que agregue a la lista valores. Fijate que uso valores[-1] porque voy agregando cosas a la última lista agregada, cuando cambio de cluster agrego otra lista vacía y voy agregando cosas en esa.
 	# si no tiene la palabra .ent, agrego la informacion sacandole los tres puntos y el signo mayor
-	for i in range(len(cdhitLinesList)):
-		if len(cdhitLinesList[i]) == 2:
-			keys.append(cdhitLinesList[i][0][1:] + cdhitLinesList[i][1])
+	
+	# genero un iterable con la function range: 
+	for lineIndex in range(len(cdhitLinesList)):
+		# si la longitud de la linea es igual a dos
+		if len(cdhitLinesList[lineIndex]) == 2:
+			clusterWord		= cdhitLinesList[lineIndex][0][1:] # primer elemento de la linea
+			clusterNumber	= cdhitLinesList[lineIndex][1] # segundo elemento de la linea
+			clusterName		= clusterWord + "_" + clusterNumber
+			keys.append(clusterName)
 			values.append([])
 		else:
-			if ".ent" in cdhitLinesList[i][2]:
-				values[-1].append(re.search(
-											"pdb(.*).ent(.*).p(.*)", 
-											cdhitLinesList[i][2]).group(1) + re.search("pdb(.*).ent(.*).p(.*)", 
-											cdhitLinesList[i][2]).group(2)
-											)
+			if ".ent" in cdhitLinesList[lineIndex][2]:
+				# añado al ultimo elemento de la lista cada pdbId
+				pdbChainIdGroup1 = re.search("pdb(.*).ent(.*).p(.*)", cdhitLinesList[lineIndex][2]).group(1) 
+				pdbChainIdGroup2 = re.search("pdb(.*).ent(.*).p(.*)", cdhitLinesList[lineIndex][2]).group(2)
+				values[-1].append(
+								pdbChainIdGroup1
+								+ pdbChainIdGroup2
+								)
 			else:
-				values[-1].append(cdhitLinesList[i][2].replace("...","").replace(">",""))
+				# añado al ultimo elemento de la lista cada pdbId
+				pdbChainId = cdhitLinesList[lineIndex][2].replace("...","").replace(">","")
+				values[-1].append(
+								pdbChainId
+								)
 
 	# Por ultimo le voy agregando al diccionario cada clave(cluster) con su respectivo valor(la lista de cadenas pdb)
 	for i in range(len(keys)):
