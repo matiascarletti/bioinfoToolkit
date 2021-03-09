@@ -52,7 +52,7 @@ def getPdbIdByClusterNameDictFrom(cdhitOutFile):
 		cdhitLinesList[cdhitLineIndex] = cdhitLinesList[cdhitLineIndex].split()
 
 	# creo el diccionario donde se va a guardar todo
-	cdhitDict = dict()
+	pdbIdByClusterNameDict = dict()
 
 	# creo listas vacias para ir guardando las claves y los valores
 	keys = []
@@ -68,7 +68,7 @@ def getPdbIdByClusterNameDictFrom(cdhitOutFile):
 			keys.append(cdhitLinesList[i][0][1:] + cdhitLinesList[i][1])
 			values.append([])
 		else:
-			if ".ent" in cdhit[i][2]:
+			if ".ent" in cdhitLinesList[i][2]:
 				values[-1].append(re.search(
 											"pdb(.*).ent(.*).p(.*)", 
 											cdhitLinesList[i][2]).group(1) + re.search("pdb(.*).ent(.*).p(.*)", 
@@ -79,6 +79,6 @@ def getPdbIdByClusterNameDictFrom(cdhitOutFile):
 
 	# Por ultimo le voy agregando al diccionario cada clave(cluster) con su respectivo valor(la lista de cadenas pdb)
 	for i in range(len(keys)):
-		cdhitDict[keys[i]] = values[i]
+		pdbIdByClusterNameDict[keys[i]] = values[i]
 	
-	return cdhitDict
+	return pdbIdByClusterNameDict
