@@ -30,26 +30,25 @@ __maintainer__ = '{maintainer}'
 __email__ = 'matias.carletti@gmail.com'
 __status__ = '{dev_status}'
 
-def cdhit_getSequenceClustersFrom(mfastaFilePath,
-                                outFolderPath,
-                                outClusterName,
-                                seqIdenCutoff=0.90,
-                                lenghtDiffCutoff=0.95,
-                                lenghtDiffAaCutoff=10,
-                                covLongAlnCutoff=float,
-                                covLongAlnAaCutoff=int,
-                                covShortAlnCutoff=float,
-                                covShortAlnAaCutoff=int,
-                                covAlnCutoff=float
-                                ):
+def cdhit_getSequenceClustersFrom(mfastaFilePath=pdbDbMfastaFilePath, 
+                            outFolderPath=outFolderPath, 
+                            outClusterName=outPdbClusterName,
+                            seqIdenCutoff=0.90,
+                            lenghtDiffCutoff=0.0,
+                            lenghtDiffAaCutoff=999999,
+                            covLongAlnCutoff=0.0,
+                            covLongAlnAaCutoff=99999999,
+                            covShortAlnCutoff=0.0,
+                            covShortAlnAaCutoff=99999999,
+                            covAlnCutoff=0.95
+                            ):
     """
     Purpose: Run cdhit shell command line again a multifasta pdb Database \
             with sequence identity and sequence lenght cutoffs
             - note: for objetives of get Conformational Diversity clusters run with \
                     this defaults setting format:
                                 seqIdenCutoff=0.90,
-                                lenghtDiffCutoff=0.95,
-                                lenghtDiffAaCutoff=10,
+                                covAlnCutoff=0.95
 
             shellCmd: cdhit -i "$1"_seqs.fa -o "$1"_seqs_cdhit.fa -c $7 -s -S -aL -AL -as -AS -A
             sourceCmd: https://gitlab.com/sbgunq/bioinfo-scripts/-/blob/master/BLAST_runner/run_blast.sh
