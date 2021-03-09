@@ -30,9 +30,9 @@ __maintainer__ = '{maintainer}'
 __email__ = 'matias.carletti@gmail.com'
 __status__ = '{dev_status}'
 
-def cdhit_getSequenceClustersFrom(mfastaFilePath=pdbDbMfastaFilePath, 
-                            outFolderPath=outFolderPath, 
-                            outClusterName=outPdbClusterName,
+def cdhit_getSequenceClustersFrom(mfastaFilePath, 
+                            outFolderPath, 
+                            outClusterName,
                             seqIdenCutoff=0.90,
                             lenghtDiffCutoff=0.0,
                             lenghtDiffAaCutoff=999999,
