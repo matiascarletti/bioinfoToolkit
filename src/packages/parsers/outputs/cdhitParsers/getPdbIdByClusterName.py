@@ -45,7 +45,7 @@ def getPdbIdByClusterNameDictFrom(cdhitOutFile):
 	
 	"""
 	# leo el cluster y lo guardo en una lista (cada elemento es una línea del cluster)
-	cdhitLinesList = open(cdhitFile, "r").readlines()
+	cdhitLinesList = open(cdhitOutFile, "r").readlines()
 
 	# para cada linea uso split y genero listas por cada linea. Esto hace que me quede una lista de listas (cada elemento de la lista cdhit ahora es una lista, cuyos elementos son las palabras separadas por coma)
 	for cdhitLineIndex in range(len(cdhitLinesList)):
