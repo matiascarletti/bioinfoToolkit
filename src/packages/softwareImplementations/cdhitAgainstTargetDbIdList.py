@@ -93,7 +93,7 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
     except FileExistsError:
         print("Out folder alredy exist")
     # seting the shell command line        
-    subprocess.call(["cdhit",
+    subprocess.call(["cd-hit",
                     "-i", mfastaFilePath,
                     "-o", "%s/%s" % (outFolderPath, outClusterName),
                     "-c", str(seqIdenCutoff),
@@ -105,5 +105,5 @@ def cdhit_getSequenceClustersFrom(mfastaFilePath,
                     "-AS", str(covShortAlnAaCutoff),
                     "-A", str(covAlnCutoff),
                     ],
-                    shell=True)
+                    shell=False)
     return
