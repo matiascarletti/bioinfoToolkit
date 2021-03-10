@@ -40,7 +40,7 @@ def blastp_getHomologuesFrom(blastDbPath=str,
                             numAlignementsCutoff=1000,
                             queryCoverageCutoff=70, 
                             sortHitsByParam=3,    
-                            sortHspsByParam=3)
+                            sortHspsByParam=3):
     """
     Purpose: Run blastp shell command line again a blast Database \
             with evalue and num alignemnts and query coverage cutoffs
