@@ -231,12 +231,12 @@ def blastp_getHomologuesFrom(blastDbPath=str,
     # seting the shell command line
     subprocess.call([
                     "-db", blastDbPath,
-                    "-query", query,
-                    "-evalue", str(evalue),
+                    "-query", queryFasta,
+                    "-evalue", str(evalueCutoff),
                     "-out", "%s/%s" % (outFolderPath, outFileName),
                     "-outfmt", outFileFormat + " qaccver qlen qstart qend sseqid saccver slen sstart send length nident gaps evalue pident qcovs",
-                    "-num_alignments", str(numAlignements),
-                    "-qcov_hsp_per", str(queryCoverage),
+                    "-num_alignments", str(numAlignementsCutoff),
+                    "-qcov_hsp_per", str(queryCoverageCutoff),
                     "-sorthits", str(sortHitsByParam),
                     "-sorthsps", str(sortHspsByParam)
                     ], 
