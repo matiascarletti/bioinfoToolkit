@@ -240,6 +240,6 @@ def blastp_getHomologuesFrom(blastDbPath=str,
                     "-sorthits", str(sortHitsByParam),
                     "-sorthsps", str(sortHspsByParam)
                     ], 
-                    shell=True
+                    shell=False
                     )
     return
