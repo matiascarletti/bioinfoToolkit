@@ -229,14 +229,14 @@ def blastp_getHomologuesFrom(blastDbPath=str,
     except FileExistsError:
         print("Out folder alredy exist")
     # seting the shell command line
-    subprocess.call([
+    subprocess.call(["blastp",
                     "-db", blastDbPath,
                     "-query", queryFasta,
                     "-evalue", str(evalueCutoff),
                     "-out", "%s/%s" % (outFolderPath, outFileName),
                     "-outfmt", str(outFileFormat) + " qaccver qlen qstart qend sseqid saccver slen sstart send length nident gaps evalue pident qcovs",
                     "-num_alignments", str(numAlignementsCutoff),
-                    "-qcov_hsp_per", str(queryCoverageCutoff),
+                    "-qcov_hsp_perc", str(queryCoverageCutoff),
                     "-sorthits", str(sortHitsByParam),
                     "-sorthsps", str(sortHspsByParam)
                     ], 
