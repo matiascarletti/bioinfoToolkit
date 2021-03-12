@@ -17,10 +17,19 @@ def clustalw_getMultipleSequenceAlignementFrom(mfasta,
         os.makedirs(outFolder)
     except FileExistsError:
         print("Out folder already exist")
-    subprocess.call(["clustalw",
-                    "-INFILE=", mfasta,
-                    "-OUTFILE=", "%s/%s" % (outFolder, outMsaName),
-                    "-OUTPUT=", outFormat
-                    ], shell=False)
+    shellcmd = "clustalw -INFILE=%s -OUTFILE=%s/%s -OUTPUT=%s" % (mfasta,
+                                                                outFolder, 
+                                                                outMsaName,
+                                                                outFormat)
+    os.system(shellcmd)
+    #
+    # subprocess.call(["clustalw",
+    #                 "-INFILE=", mfasta,
+    #                 "-OUTFILE=", "%s/%s" % (outFolder, outMsaName),
+    #                 "-OUTPUT=", outFormat
+    #                 ], shell=False)
     return
     
+
+# from Bio.Align.Applications import ClustalwCommandline
+# cline = ClustalwCommandline(cmd="clustalw", infile="opuntia.fasta", outfile=)
