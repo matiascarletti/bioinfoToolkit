@@ -1,7 +1,8 @@
 import subprocess
 import os
+import shutil
 
-def clustalw_getMultipleSequenceAlignementFrom(mfasta,
+def clustalw_getMultipleSequenceAlignementFrom(mfastaFolder, mfastaFileName,
                                                 outFolder,
                                                 outMsaName,
                                                 outFormat):
@@ -17,11 +18,12 @@ def clustalw_getMultipleSequenceAlignementFrom(mfasta,
         os.makedirs(outFolder)
     except FileExistsError:
         print("Out folder already exist")
-    shellcmd = "clustalw -INFILE=%s -OUTFILE=%s/%s -OUTPUT=%s" % (mfasta,
+    shellcmd = "clustalw -INFILE=%s/%s -OUTFILE=%s/%s -OUTPUT=%s" % (mfastaFolder, mfastaFileName,
                                                                 outFolder, 
                                                                 outMsaName,
                                                                 outFormat)
     os.system(shellcmd)
+    #shutil.move(mfastaFolder + "/%s.dnd" % mfastaFileName.replace(".fasta", ""), outFolder)
     #
     # subprocess.call(["clustalw",
     #                 "-INFILE=", mfasta,
