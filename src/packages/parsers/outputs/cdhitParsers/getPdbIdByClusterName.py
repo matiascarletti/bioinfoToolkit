@@ -76,8 +76,9 @@ def getPdbIdByClusterNameDictFrom(cdhitOutFile):
 		else:
 			if ".ent" in cdhitLinesList[lineIndex][2]:
 				# añado al ultimo elemento de la lista cada pdbId
-				pdbChainIdGroup1 = re.search("pdb(.*).ent(.*).p(.*)", cdhitLinesList[lineIndex][2]).group(1) 
+				pdbChainIdGroup1 = re.search("pdb(.*).ent(.*).p(.*)", cdhitLinesList[lineIndex][2]).group(1)
 				pdbChainIdGroup2 = re.search("pdb(.*).ent(.*).p(.*)", cdhitLinesList[lineIndex][2]).group(2)
+				pdbChainIdGroup3 = re.search("pdb(.*).ent(.*).p(.*)", cdhitLinesList[lineIndex][2]).group(3)
 				values[-1].append(
 								pdbChainIdGroup1
 								+ pdbChainIdGroup2
@@ -94,3 +95,6 @@ def getPdbIdByClusterNameDictFrom(cdhitOutFile):
 		pdbIdByClusterNameDict[keys[i]] = values[i]
 	
 	return pdbIdByClusterNameDict
+
+cdhitOutFile = "/home/matias/Projects/2020/Codnas_pdbDbMfastaClustering/outputs/2020-10-09/cd-hit/seqClusters/pdbDbRxsNmrs.fasta.clstr"
+pdbIdByClusterNameDict = getPdbIdByClusterNameDictFrom(cdhitOutFile)
