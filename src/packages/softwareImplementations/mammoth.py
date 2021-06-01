@@ -1,10 +1,10 @@
-# built in
+import subprocess
 import os
 
 
-def mammoth_getStructureSuperimpositionFrom(pdbChainModel1, pdbChainModel2
-                                            outLogFolder, outLogName,
-                                            outPdbAlignFolder, outPdbAlignName):
+def mammoth_getStructureSuperimpositionFrom(pdbChainModel1, pdbChainModel2,
+                                            outLogFolder=str, outLogName=str,
+                                            structureAlignFile=0):
     """
     MAMMOTH: The valid command parameters are:
     REQUIRED args
@@ -26,12 +26,23 @@ def mammoth_getStructureSuperimpositionFrom(pdbChainModel1, pdbChainModel2
     if the first 12 characters of -e or -p file are 'MAMMOTH_List'
     then the file is interpreted as a list of files to process
     """
-    shellcmd = "mammoth -p %s -e %s -o %s/%s -r %s/%s" % (pdbChainModel1,
-                                                        pdbChainModel2,
-                                                        outLogFolder,
-                                                        outLogName,
-                                                        outPdbAlignFolder,
-                                                        outPdbAlignName,
-                                                        )
-    os.system(shellcmd)
+    # shellcmd = "mammoth -p %s -e %s -o %s/%s -r %s/%s" % (pdbChainModel1,
+    #                                                     pdbChainModel2,
+    #                                                     outLogFolder,
+    #                                                     outLogName,
+    #                                                     outPdbAlignFolder,
+    #                                                     outPdbAlignName
+    #                                                     )
+    # os.system(shellcmd)
+    subprocess.call(["mammoth",
+                    "-p", pdbChainModel1,
+                    "-e", pdbChainModel2,
+                    "-o", "%s/%s" % (outLogFolder, outLogName),
+                    "-r", str(structureAlignFile)
+                    ], shell=False)
     return
+
+# mammoth_getStructureSuperimpositionFrom("/home/matias/Projects/2020/RvDb_codnasHomologues/processed_data/2020-06-23/pdbFiles/RV6/Cluster_20103/5l7e_A.pdb", 
+# "/home/matias/Projects/2020/RvDb_codnasHomologues/processed_data/2020-06-23/pdbFiles/RV6/Cluster_20103/5l7e_B.pdb",
+# "/home/matias/Projects/2020/RvDb_codnasHomologues/processed_data/2020-06-23/pdbFiles/RV6/Cluster_20103",
+# "/mammot.log")
