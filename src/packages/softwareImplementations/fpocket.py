@@ -14,8 +14,12 @@ def fpocket(pdbDbFilesFolder=str, pdbDbFile=str):
             fpocket -f {pdbFile}
     """
     if pdbDbFilesFolder:
-        pdbDbFilesList    = glob.glob(pdbDbFilesFolder)
-        os.system(f"fpocket -F {pdbDbFilesList}")
+        pdbDbFilesList    = glob.glob(pdbDbFilesFolder + "/*.pdb")
+        for pdbDbFile in pdbDbFilesList:
+            with open(pdbDbFilesFolder + "/pdbFileList.list", "a") as f:
+                f.write(f"{pdbDbFile}\n")
+        pdbDbFileList = open(pdbDbFilesFolder + "/pdbFileList.list", "r")
+        os.system(f"fpocket -F {pdbDbFileList}")
     else:
         os.system(f"fpocket -f {pdbDbFile}")
     return
